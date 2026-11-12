@@ -1,238 +1,196 @@
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="assets/img/favicon.png">
-    <title>Sudharsan - Portfolio</title>
-
-    <!-- Font Awesome icons -->
-    <script src="https://kit.fontawesome.com/a9cdbedf57.js" crossorigin="anonymous"></script>
-
-    <!-- Styling CSS -->
-
-    <!-- Theme 1 -->
-    <link rel="stylesheet" id="themeStylesheet" href="assets/css/style.css">
-
-    <!-- Theme 2 -->
-    <!-- <link rel="stylesheet" href="./assets/css/style-two.css"> -->
-
-    <!-- Theme 3 -->
-    <!-- <link rel="stylesheet" href="./assets/css/style-three.css"> -->
-
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sao Moni – Portfolio</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=VT323&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#9ba27d; --panel:#a9b08c; --ink:#1f2a14; --mid:#6f7858; --blue:#4a6fa5; --rust:#a8795f;
+  --bs-body-bg:var(--bg); --bs-body-color:var(--ink);
+}
+html{scroll-behavior:smooth}
+body{font-family:'VT323',monospace;font-size:1.35rem;background:var(--bg);color:var(--ink);
+  background-image:linear-gradient(rgba(31,42,20,.05) 50%,transparent 50%);background-size:100% 4px}
+h1,h2,h3,.pix{font-family:'Silkscreen',monospace;text-transform:uppercase;letter-spacing:.05em}
+a{color:var(--ink)}
+a:hover{background:var(--ink);color:var(--bg)}
+.logo{font-size:clamp(2.2rem,8vw,4.5rem);font-weight:700;text-shadow:4px 4px 0 var(--mid);line-height:1}
+.box{border:3px solid var(--ink);background:var(--panel);box-shadow:inset 0 0 0 3px var(--bg),inset 0 0 0 5px var(--ink);padding:1.4rem}
+.lbl{font-family:'Silkscreen',monospace;font-size:.85rem;display:block;margin-bottom:.35rem}
+.nav-tabs-retro{display:flex;flex-wrap:wrap;gap:.5rem;border:0;padding:0}
+.nav-tabs-retro a{font-family:'Silkscreen',monospace;font-size:.8rem;text-decoration:none;padding:.5rem 1rem;color:var(--mid)}
+.nav-tabs-retro a.active,.nav-tabs-retro a:hover{color:var(--bg);background:var(--ink)}
+.bar{height:10px;background:var(--ink);width:70px;margin-top:6px}
+.btn-retro{font-family:'Silkscreen',monospace;font-size:.8rem;background:var(--panel);color:var(--ink);
+  border:3px solid var(--ink);border-radius:0;box-shadow:inset 0 0 0 2px var(--bg);padding:.6rem 1.2rem}
+.btn-retro:hover,.btn-retro:focus{background:var(--ink);color:var(--bg);box-shadow:none}
+.form-control,.form-select{border:3px solid var(--ink);border-radius:0;background:var(--panel);
+  color:var(--ink);font-family:'Silkscreen',monospace;font-size:.8rem;box-shadow:inset 0 0 0 2px var(--bg)}
+.form-control::placeholder{color:var(--mid)}
+.form-control:focus,.form-select:focus{background:var(--panel);color:var(--ink);border-color:var(--ink);
+  box-shadow:inset 0 0 0 2px var(--bg),0 0 0 3px var(--blue)}
+.form-check-input{border:3px solid var(--ink);border-radius:0;background-color:var(--panel);width:1.3em;height:1.3em}
+.form-check-input:checked{background-color:var(--ink);border-color:var(--ink)}
+.form-check-input:focus{box-shadow:0 0 0 3px var(--blue);border-color:var(--ink)}
+.form-switch .form-check-input{width:3em;border-radius:0;background-image:none;position:relative}
+.form-switch .form-check-input::after{content:"";position:absolute;top:2px;left:2px;width:.8em;height:.8em;background:var(--ink)}
+.form-switch .form-check-input:checked::after{left:auto;right:2px;background:var(--bg)}
+input[type=range]{accent-color:var(--ink);width:100%}
+.skill{display:flex;align-items:center;gap:.8rem}
+.skill .pix{width:8.5rem;font-size:.8rem;flex:none}
+.meter{flex:1;height:18px;border:3px solid var(--ink);display:flex;gap:2px;padding:2px;background:var(--panel)}
+.meter i{flex:1;background:var(--mid)}
+.meter i.on{background:var(--ink)}
+.proj h3{font-size:1rem}
+.tag{display:inline-block;font-family:'Silkscreen',monospace;font-size:.7rem;border:2px solid var(--ink);padding:.1rem .45rem;margin:0 .3rem .3rem 0}
+.tag.blue{border-color:var(--blue);color:var(--blue)}
+.avatar{width:96px;height:96px;border:3px solid var(--ink);background:var(--panel);display:grid;place-items:center;font-size:3rem;box-shadow:inset 0 0 0 3px var(--bg)}
+.err{font-size:1rem;color:#7a3f27}
+section{padding-top:3.5rem}
+footer{border-top:3px dashed var(--ink);margin-top:4rem;padding:1.5rem 0;font-size:1.1rem}
+.blink{animation:b 1s steps(2) infinite}
+@keyframes b{50%{opacity:0}}
+@media (prefers-reduced-motion:reduce){.blink{animation:none}html{scroll-behavior:auto}}
+@media (max-width:576px){.skill{flex-direction:column;align-items:stretch;gap:.2rem}}
+</style>
 </head>
-
 <body>
+<div class="container py-4" style="max-width:1000px">
 
-    <header>
+  <header>
+    <div class="logo pix">Sao Moni</div>
+    <p class="mt-3 mb-4">Computer Science &amp; CyberSecurity student in Phnom Penh, Cambodia.<span class="blink">_</span></p>
+    <nav class="nav-tabs-retro" aria-label="Sections">
+      <a href="#about" class="active">Profile</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="bar"></div>
+  </header>
 
-        <div>
-            <a href="./index.html"><span class="logo">Computer Science student</span></a>
+  <section id="about">
+    <div class="row g-4">
+      <div class="col-md-8">
+        <h2 class="h5 mb-3">Profile</h2>
+        <div class="box">
+          <div class="d-flex gap-3 align-items-start">
+            <div class="avatar" aria-hidden="true">☻</div>
+            <p class="mb-0">Hi, I'm Sao Moni. I'm studying Computer Science at Western University and learning networking, system administration and software development. I build small projects in Python and Bootstrap, and I'm happy to talk networking concepts, CS and tech projects.</p>
+          </div>
         </div>
-        <div>
-            <ul>
-                <li>
-                    <a href="#home">Home</a>
-                </li>
-                <li>
-                    <a href="#about">About</a>
-                </li>
-                <li>
-                    <a href="#projects">Projects</a>
-                </li>
-                <li>
-                    <a href="#contact">Contact</a>
-                </li>
-            </ul>
+      </div>
+      <div class="col-md-4">
+        <h2 class="h5 mb-3">Status</h2>
+        <div class="box">
+          <div class="form-check form-switch mb-2">
+            <input class="form-check-input" type="checkbox" id="avail" checked>
+            <label class="form-check-label pix" style="font-size:.8rem" for="avail" id="availLbl">Open to work</label>
+          </div>
+          <span class="lbl mt-3">Location</span>
+          <div>Phnom Penh, Cambodia</div>
+          <span class="lbl mt-3">Education</span>
+          <div>B.Sc. Computer Science, Western University (2025 – present)</div>
+          <div>B.Sc. CyberSecurity, Institute of Digital Intelligence Cambodia (2026 – present)</div>
         </div>
+      </div>
+    </div>
+  </section>
 
-    </header>
+  <section id="skills">
+    <h2 class="h5 mb-3">Skills</h2>
+    <div class="box">
+      <div class="row g-3" id="skillList"></div>
+    </div>
+  </section>
 
-    <main>
+  <section id="projects">
+    <h2 class="h5 mb-3">Projects</h2>
+    <div class="row g-4">
+      <div class="col-md-4"><div class="box proj h-100">
+        <h3>Blood Donor Bank</h3>
+        <p>A management system for tracking blood donors, written in Python with a database module.</p>
+        <span class="tag">Python</span><span class="tag">Database</span>
+        <div class="mt-3"><a class="btn btn-retro" href="https://github.com/sao-moni/BloodDonorBank-Management-System" target="_blank" rel="noopener">Code</a></div>
+      </div></div>
+      <div class="col-md-4"><div class="box proj h-100">
+        <h3>Bootstrap Deploy</h3>
+        <p>A multi-page Bootstrap site (home, about, products, contact) deployed with GitHub Actions to Vercel.</p>
+        <span class="tag">Bootstrap</span><span class="tag">HTML</span><span class="tag blue">Live</span>
+        <div class="mt-3"><a class="btn btn-retro" href="https://bootstrapdeployment.vercel.app" target="_blank" rel="noopener">View</a> <a class="btn btn-retro" href="https://github.com/sao-moni/Bootstrap_Deploy" target="_blank" rel="noopener">Code</a></div>
+      </div></div>
+      <div class="col-md-4"><div class="box proj h-100">
+        <h3>Personal Site</h3>
+        <p>My GitHub Pages website, built with plain HTML and a custom domain.</p>
+        <span class="tag">HTML</span><span class="tag">GitHub Pages</span>
+        <div class="mt-3"><a class="btn btn-retro" href="https://github.com/sao-moni/sao-moni.github.io" target="_blank" rel="noopener">Code</a></div>
+      </div></div>
+    </div>
+  </section>
 
-        <!-- Hero Section -->
-        <section class="hero-section" id="home">
-            <div>
-                <div>
-                    <h4 title="Hello, How are you?">Hi, There!</h4>
-                    <h2 class="hero-section__title">I'm <span>Sao Moni</span></h2>
-                    <p class="hero-section__desc">I am a Web Developer skilled in Frontend Technologies, such as HTML,
-                        CSS, and JavaScript, creating interactive web experiences. I'm passionate about blending design
-                        aesthetics with functionality.</p>
-                </div>
-
-                <ul class="social-icons">
-                    <!-- Social Icons -->
-                    <li>
-                        <a href="https://fb.me/sudharsandaniel.sudharsandaniel" target="_blank"><i
-                                class="fa-brands fa-facebook"></i></a>
-                    </li>
-                    <li>
-                        <a href="https://www.linkedin.com/in/sudharsan-a-b40506290/" target="_blank"><i
-                                class="fa-brands fa-linkedin"></i></a>
-                    </li>
-                    <li>
-                        <a href="https://instagram.com/sudharsan_daniel" target="_blank"><i
-                                class="fa-brands fa-instagram"></i></a>
-                    </li>
-                    <li>
-                        <a href="https://twitter.com/Sudharsandaniel" target="_blank"><i
-                                class="fa-brands fa-twitter"></i></a>
-                    </li>
-                </ul>
-
-                <div class="hero-buttons">
-                    <button class="btn btn-primary" title="Got a cool project? Let’s work together!">Hire
-                        me</button>
-                    <button class="btn btn-dark-outlined">
-                        <a href="./assets/my resume/my resume.pdf" download>Download CV</a>
-                    </button>
-                </div>
-            </div>
-
-            <div class="hero-img">
-                <img src="assets/img/Sudharsan.jpg" alt="Sudharsan-portfolio" width="350">
-            </div>
-        </section>
-
-        <!-- About Section  -->
-        <section class="about-section" id="about">
-
-            <div class="about-img">
-                <img src="assets/img/Sudharsan.jpg" alt="saomoni-portfolio">
-            </div>
-
-            <div class="about-content">
-                <h4>About Me</h4>
-                <h2>I am Designer & <br> <span>Software Developer</span></h2>
-                <p>Hello there! I'm Sao Moni, a Second-year student at <a href="https://westernuniversity.edu.kh">Western University</a>
-                    majoring in Computer
-                    Science and a First-year student at Ind. My academic journey has allowed me to dive deep into Web-Development, and I'm
-                    incredibly passionate about leveraging technology to solve real-world problems. Being a student
-                    in today's dynamic digital era, I've had opportunities to work on exciting projects, some of
-                    which you can explore right here on my portfolio.
-                </p>
-
-                <button class="btn btn-primary">
-                    <a href="https://github.com/danielace1" target="_blank">
-                        Know More <i class="fa-solid fa-arrow-right-to-bracket"></i>
-                    </a>
-                </button>
-            </div>
-
-        </section>
-
-        <!-- Projects Section -->
-        <section class="projects-section" id="projects">
-            <h2>My <span>Projects</span></h2>
-            <div class="projects-cards">
-                <div class="projects-card-box">
-                    <div class="projects-card-box__icons">
-                        <i class="fa-solid fa-suitcase"></i>
-                    </div>
-                    <div class="projects-card-box__desc">
-                        <h4>Business Website</h4>
-                        <p>A Business website crafted using HTML, CSS, Bootstrap and
-                            JavaScript, showcasing a modern design and interactive elements, serving as a template for
-                            diverse web projects.
-                        </p>
-                    </div>
-                    <div class="projects-card-box__buttons">
-                        <button class="btn btn-dark-outlined">
-                            <a href="https://danielace1.github.io/HTML-CSS/Business%20-%20Bluu/" target="_blank">View <i
-                                    class="fa-solid fa-external-link"></i></a>
-                        </button>
-                    </div>
-                </div>
-
-                <div class="projects-card-box">
-                    <div class="projects-card-box__icons">
-                        <i class="fa-solid fa-music"></i>
-                    </div>
-                    <div class="projects-card-box__desc">
-                        <h4>Music Player</h4>
-                        <p>A music player built with HTML, CSS, and JavaScript, offering
-                            an
-                            intuitive interface for playlist management and audio playback, optimized for both desktop
-                            and
-                            mobile experiences.
-                        </p>
-                    </div>
-                    <div class="projects-card-box__buttons">
-                        <button class="btn btn-dark-outlined">
-                            <a href="https://danielace1.github.io/Web-Apps/SoundSphere%20-Music%20Player/"
-                                target="_blank">View <i class="fa-solid fa-external-link"></i></a>
-                        </button>
-                    </div>
-
-                </div>
-
-                <div class="projects-card-box">
-                    <div class="projects-card-box__icons">
-                        <i class="fa-solid fa-id-card"></i>
-                    </div>
-                    <div class="projects-card-box__desc">
-                        <h4>Sign-in Page</h4>
-                        <p>A sleek sign-in page designed using HTML, CSS, and JavaScript,
-                            ensuring user-friendly interactions and a secure authentication process.
-                        </p>
-                    </div>
-                    <div class="projects-card-box__buttons">
-                        <button class="btn btn-dark-outlined">
-                            <a href="https://danielace1.github.io/HTML-CSS/Responsive%20Sign-in%20Page/"
-                                target="_blank">View <i class="fa-solid fa-external-link"></i></a>
-                        </button>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section class="contact-section" id="contact">
-            <h2>Contact <span>ME!</span></h2>
-            <form action="">
-                <div>
-                    <input type="text" name="name" placeholder="FullName" required>
-                </div>
-                <div>
-                    <input type="email" name="email" placeholder="Email" required>
-                </div>
-                <div>
-                    <textarea name="message" placeholder="Type Message" rows="5"></textarea>
-                </div>
-                <div>
-                    <button class="btn btn-primary">SEND MESSAGE</button>
-                </div>
-            </form>
-            <div class="contact__github">
-                <button class="btn">
-                    <a href="https://github.com/sao-moni" target="_blank">
-                        <i class="fa-brands fa-github"></i> Github
-                    </a>
-                </button>
-            </div>
-        </section>
-
-    </main>
-
-    <footer>
-        <p>Copyright &copy; 2026 - <a href="https://github.com/sao-moni" target="_blank">sao moni</a> - All Rights
-            Reserved.</p>
-        <div class="footer-buttons">
-            <button data-theme="./assets/css/style.css" class="footer__theme1 active-theme">Theme 1</button>
-            <button data-theme="./assets/css/style-two.css" class="footer__theme2">Theme 2</button>
-            <button data-theme="./assets/css/style-three.css" class="footer__theme3">Theme 3</button>
+  <section id="contact">
+    <h2 class="h5 mb-3">Contact</h2>
+    <div class="box">
+      <form id="contactForm" class="row g-3">
+        <div class="col-md-6">
+          <label class="lbl" for="name">Name</label>
+          <input class="form-control" id="name" placeholder="Type here" required>
         </div>
+        <div class="col-md-6">
+          <label class="lbl" for="topic">Topic</label>
+          <select class="form-select" id="topic">
+            <option>Project</option><option>Job</option><option>Just saying hi</option>
+          </select>
+        </div>
+        <div class="col-12">
+          <label class="lbl" for="msg">Message</label>
+          <textarea class="form-control" id="msg" rows="4" placeholder="Type here..." required></textarea>
+        </div>
+        <div class="col-12 d-flex align-items-center gap-3 flex-wrap">
+          <button class="btn btn-retro" type="submit">Send message</button>
+          <span class="err" id="note" role="status"></span>
+        </div>
+      </form>
+      <p class="mt-3 mb-0" style="font-size:1.1rem">Sending opens your email app. Nothing is stored on a server.</p>
+    </div>
+  </section>
 
-    </footer>
+  <footer class="d-flex justify-content-between flex-wrap gap-2">
+    <span>© <span id="yr"></span> Sao Moni</span>
+    <span><a href="https://github.com/sao-moni">GitHub</a> / <a href="https://linkedin.com/in/sao-moni">LinkedIn</a> / <a href="mailto:saomoni.edu.kh@gmail.com">Email</a></span>
+  </footer>
+</div>
 
-    <!-- JS -->
-    <script src="assets/js/script.js"></script>
+<script>
+  // Edit these skills (level 1–10)
+  const skills=[["Python",7],["Lua",6],["MySQL",7],["SQL Server",6],["Networking",5],["SysAdmin",6],["Bootstrap",6],["HTML/CSS",6]];
+  document.getElementById('skillList').innerHTML=skills.map(([n,l])=>
+    `<div class="col-md-6"><div class="skill"><span class="pix">${n}</span><div class="meter" role="img" aria-label="${n}: ${l} out of 10">${
+      Array.from({length:10},(_,i)=>`<i class="${i<l?'on':''}"></i>`).join('')}</div></div></div>`).join('');
 
+  document.getElementById('yr').textContent=new Date().getFullYear();
+
+  const avail=document.getElementById('avail'),lbl=document.getElementById('availLbl');
+  avail.addEventListener('change',()=>lbl.textContent=avail.checked?'Open to work':'Busy right now');
+
+  // Active tab on scroll
+  const links=[...document.querySelectorAll('.nav-tabs-retro a')];
+  const io=new IntersectionObserver(es=>es.forEach(e=>{
+    if(e.isIntersecting)links.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+e.target.id));
+  }),{rootMargin:'-40% 0px -55% 0px'});
+  document.querySelectorAll('section').forEach(s=>io.observe(s));
+
+  // No backend: opens the visitor's email app
+  document.getElementById('contactForm').addEventListener('submit',e=>{
+    e.preventDefault();
+    const to='saomoni.edu.kh@gmail.com'; // <- your email
+    const sub=encodeURIComponent('[Portfolio] '+topic.value+' from '+name.value);
+    location.href=`mailto:${to}?subject=${sub}&body=${encodeURIComponent(msg.value)}`;
+    document.getElementById('note').textContent='Opening your email app...';
+  });
+</script>
 </body>
-
 </html>
