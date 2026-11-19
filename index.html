@@ -2,10 +2,42 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Sao Moni – Portfolio</title>
-<meta name="description" content="Sao Moni – Computer Science & CyberSecurity student in Phnom Penh, Cambodia.">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sao Moni – CS & CyberSecurity Student | Portfolio</title>
+
+<!-- ===== Basic meta (for Google) ===== -->
+<meta name="description" content="Sao Moni – Computer Science & CyberSecurity student in Phnom Penh, Cambodia. Python, databases, networking and web projects.">
+<meta name="author" content="Sao Moni">
+<meta name="keywords" content="Sao Moni, portfolio, computer science, cybersecurity, Phnom Penh, Cambodia, Python, Bootstrap">
+<meta name="theme-color" content="#1f2a14">
+<link rel="canonical" href="https://sao-moni.github.io/">
+
+<!-- ===== Website icon (favicon) ===== -->
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+
+<!-- ===== Link preview / thumbnail (Facebook, Messenger, Telegram, LinkedIn, Discord...) ===== -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Sao Moni">
+<meta property="og:title" content="Sao Moni – Portfolio">
+<meta property="og:description" content="Computer Science & CyberSecurity student in Phnom Penh, Cambodia. See my projects and skills.">
+<meta property="og:url" content="https://sao-moni.github.io/">
+<meta property="og:image" content="https://sao-moni.github.io/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Sao Moni – Portfolio">
+<meta property="og:locale" content="en_US">
+<!-- X / Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Sao Moni – Portfolio">
+<meta name="twitter:description" content="Computer Science & CyberSecurity student in Phnom Penh, Cambodia.">
+<meta name="twitter:image" content="https://sao-moni.github.io/og-image.png">
+
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=VT323&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -13,18 +45,17 @@
   --bs-body-bg:var(--bg); --bs-body-color:var(--ink);
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
 body{font-family:'VT323',monospace;font-size:1.35rem;background:var(--bg);color:var(--ink);overflow-x:hidden}
 ::selection{background:var(--ink);color:var(--bg)}
+.bi{line-height:1;vertical-align:-.1em}
 
 /* CRT scanlines + vignette */
 body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:50;
-  background:linear-gradient(rgba(31,42,20,.06) 50%,transparent 50%);background-size:100% 4px;
-  animation:scan 8s linear infinite}
+  background:linear-gradient(rgba(31,42,20,.06) 50%,transparent 50%);background-size:100% 4px;animation:scan 8s linear infinite}
 body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:49;
   background:radial-gradient(ellipse at center,transparent 60%,rgba(31,42,20,.25) 100%)}
 @keyframes scan{to{background-position:0 100px}}
-
 #pixels{position:fixed;inset:0;z-index:0;pointer-events:none}
 .wrap{position:relative;z-index:1}
 
@@ -34,67 +65,76 @@ a:hover{background:var(--ink);color:var(--bg)}
 
 /* Boot screen */
 #boot{position:fixed;inset:0;z-index:100;background:var(--ink);color:var(--bg);display:flex;flex-direction:column;
-  align-items:center;justify-content:center;gap:1rem;font-family:'Silkscreen',monospace;transition:opacity .4s steps(4)}
+  align-items:center;justify-content:center;gap:1rem;font-family:'Silkscreen',monospace;transition:opacity .4s steps(4);text-align:center;padding:1rem}
+#boot .bi{font-size:2.4rem;animation:b 1s steps(2) infinite}
 #boot.done{opacity:0;pointer-events:none}
 #boot .bootbar{width:min(280px,70vw);height:22px;border:3px solid var(--bg);padding:3px;display:flex;gap:3px}
 #boot .bootbar i{flex:1;background:var(--bg);opacity:0}
 #boot .bootbar i.on{opacity:1}
 
-/* Scroll progress */
 #progress{position:fixed;top:0;left:0;height:5px;background:var(--ink);width:0;z-index:60}
 
 /* Sticky nav */
-.topnav{position:sticky;top:0;z-index:40;background:rgba(155,162,125,.88);backdrop-filter:blur(4px);
+.topnav{position:sticky;top:0;z-index:40;background:rgba(155,162,125,.92);backdrop-filter:blur(4px);
   border-bottom:3px solid transparent;transition:border-color .2s}
 .topnav.stuck{border-bottom-color:var(--ink)}
-.nav-tabs-retro{display:flex;flex-wrap:wrap;gap:.5rem;border:0;padding:.6rem 0}
+.nav-tabs-retro{display:flex;gap:.5rem;border:0;padding:.6rem 0;margin:0}
 .nav-tabs-retro a{font-family:'Silkscreen',monospace;font-size:.8rem;text-decoration:none;padding:.5rem 1rem;color:var(--mid);
-  position:relative;transition:color .15s steps(2),background .15s steps(2)}
+  display:flex;align-items:center;gap:.45rem;transition:color .15s steps(2),background .15s steps(2)}
+.nav-tabs-retro a .bi{font-size:1rem}
 .nav-tabs-retro a.active,.nav-tabs-retro a:hover{color:var(--bg);background:var(--ink)}
-.nav-tabs-retro a.active::before{content:"▶";position:absolute;left:-.1rem;top:50%;transform:translate(-100%,-50%);
-  color:var(--ink);font-size:.6rem;animation:nudge .6s steps(2) infinite}
-@keyframes nudge{50%{transform:translate(-130%,-50%)}}
+.nav-social{margin-left:auto;display:flex;gap:.3rem;align-items:center}
+.nav-social a{padding:.4rem .55rem;font-size:1.1rem}
 
 /* Hero */
-.hero{display:flex;gap:1.8rem;align-items:center;flex-wrap:wrap;padding:2rem 0 1.2rem}
-.logo{font-size:clamp(2.4rem,9vw,4.8rem);font-weight:700;line-height:1;margin:0;position:relative;
-  text-shadow:4px 4px 0 var(--mid);animation:shadow 3s steps(1) infinite}
+.hero{display:flex;gap:1.8rem;align-items:center;padding:2rem 0 1.2rem}
+.logo{font-size:clamp(2.2rem,9vw,4.8rem);font-weight:700;line-height:1;margin:0;
+  text-shadow:4px 4px 0 var(--mid);animation:shadow 3s steps(1) infinite;word-break:keep-all}
 @keyframes shadow{0%,90%{text-shadow:4px 4px 0 var(--mid)}92%{text-shadow:-3px 2px 0 var(--blue),3px -2px 0 var(--rust)}
   94%{text-shadow:2px -2px 0 var(--blue),-2px 3px 0 var(--rust)}96%{text-shadow:4px 4px 0 var(--mid)}}
 .logo .ch{display:inline-block;opacity:0;transform:translateY(-30px)}
 .ready .logo .ch{animation:drop .5s steps(5) forwards;animation-delay:calc(var(--i) * 70ms)}
 @keyframes drop{to{opacity:1;transform:none}}
-.hero-sub{min-height:2.2em}
-.cursor{display:inline-block;width:.6em;background:var(--ink);color:transparent;animation:b 1s steps(2) infinite}
+.hero-sub{min-height:2.4em;display:flex;align-items:flex-start;gap:.5rem}
+.hero-sub .bi{flex:none;margin-top:.15em}
+.cursor{display:inline-block;width:.55em;height:1em;vertical-align:-.12em;line-height:1;background:var(--ink);color:transparent;animation:b 1s steps(2) infinite}
 @keyframes b{50%{opacity:0}}
+.chips{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.6rem}
+.chip{font-family:'Silkscreen',monospace;font-size:.7rem;border:2px solid var(--ink);padding:.2rem .5rem;display:inline-flex;gap:.35rem;align-items:center;background:var(--panel)}
 
 .avatar{width:120px;height:120px;border:3px solid var(--ink);background:var(--panel);display:grid;place-items:center;
   box-shadow:inset 0 0 0 3px var(--bg),6px 6px 0 var(--ink);animation:bob 2.4s steps(4) infinite;flex:none}
-.avatar svg{width:84px;height:84px;image-rendering:pixelated}
+.avatar svg{width:84px;height:84px}
 @keyframes bob{50%{transform:translateY(-6px)}}
 .avatar .eye{animation:blinkEye 4s steps(1) infinite}
 @keyframes blinkEye{0%,94%{opacity:1}95%,99%{opacity:0}}
-
-.bar{height:10px;background:var(--ink);width:0;margin-top:6px;transition:width .8s steps(8)}
+.bar{height:10px;background:var(--ink);width:0;margin-top:10px;transition:width .8s steps(8)}
 .ready .bar{width:70px}
 
 /* Boxes */
 .box{border:3px solid var(--ink);background:var(--panel);box-shadow:inset 0 0 0 3px var(--bg),inset 0 0 0 5px var(--ink);padding:1.4rem;position:relative}
-.lbl{font-family:'Silkscreen',monospace;font-size:.85rem;display:block;margin-bottom:.35rem}
+.stack{display:flex;flex-direction:column}
+.stack>.box{flex:1}
+.lbl{font-family:'Silkscreen',monospace;font-size:.85rem;display:flex;align-items:center;gap:.4rem;margin-bottom:.35rem}
 section{padding-top:4rem}
 section h2{display:flex;align-items:center;gap:.6rem}
-section h2::before{content:"";width:12px;height:12px;background:var(--ink);display:inline-block}
+.hicon{width:30px;height:30px;background:var(--ink);color:var(--bg);display:inline-grid;place-items:center;font-size:.95rem;flex:none}
 section h2 .num{color:var(--mid);font-size:.75em}
 
-/* Reveal on scroll */
 .reveal{opacity:0;transform:translateY(24px);transition:opacity .6s steps(6),transform .6s steps(6)}
 .reveal.in{opacity:1;transform:none}
 
+/* Info rows */
+.info{list-style:none;padding:0;margin:0;display:grid;gap:.5rem}
+.info li{display:flex;gap:.6rem;align-items:center}
+.ibox{width:30px;height:30px;border:2px solid var(--ink);display:inline-grid;place-items:center;font-size:.9rem;flex:none;background:var(--light)}
+
 /* Education timeline */
-.edu{list-style:none;padding:0 0 0 1.2rem;margin:0;border-left:3px dashed var(--ink)}
-.edu li{position:relative;margin-bottom:.6rem;line-height:1.15}
-.edu li::before{content:"";position:absolute;left:calc(-1.2rem - 7px);top:.35em;width:11px;height:11px;background:var(--ink)}
-.edu small{display:block;color:var(--mid);font-size:1rem}
+.edu{list-style:none;padding:0 0 0 1.6rem;margin:0;border-left:3px dashed var(--ink)}
+.edu li{position:relative;margin-bottom:.8rem;line-height:1.15}
+.edu li>.bi{position:absolute;left:calc(-1.6rem - 13px);top:-.05em;width:22px;height:22px;background:var(--ink);color:var(--bg);
+  display:grid;place-items:center;font-size:.75rem}
+.edu small{display:flex;flex-wrap:wrap;gap:.2rem .6rem;color:var(--mid);font-size:1rem;margin-top:.15rem}
 
 /* Status switch */
 .form-check-input{border:3px solid var(--ink);border-radius:0;background-color:var(--panel);width:1.3em;height:1.3em}
@@ -106,48 +146,85 @@ section h2 .num{color:var(--mid);font-size:.75em}
 .live-dot{display:inline-block;width:10px;height:10px;background:var(--blue);margin-left:.4rem;animation:b 1.2s steps(2) infinite}
 
 /* Skills */
-.skill{display:flex;align-items:center;gap:.8rem}
-.skill .pix{width:8.5rem;font-size:.8rem;flex:none}
-.skill .lv{font-family:'Silkscreen',monospace;font-size:.75rem;width:2.2rem;text-align:right;flex:none}
-.meter{flex:1;height:18px;border:3px solid var(--ink);display:flex;gap:2px;padding:2px;background:var(--panel)}
-.meter i{flex:1;background:var(--mid);opacity:.45;transition:background .1s,opacity .1s}
+.skill{display:flex;align-items:center;gap:.7rem}
+.skill .sico{width:30px;height:30px;border:2px solid var(--ink);display:grid;place-items:center;font-size:.95rem;flex:none;background:var(--light);transition:background .1s,color .1s}
+.skill:hover .sico{background:var(--ink);color:var(--bg)}
+.skill .pix{width:7.5rem;font-size:.78rem;flex:none}
+.skill .lv{font-family:'Silkscreen',monospace;font-size:.75rem;width:2.6rem;text-align:right;flex:none}
+.meter{flex:1;height:18px;border:3px solid var(--ink);display:flex;gap:2px;padding:2px;background:var(--panel);min-width:0}
+.meter i{flex:1;background:var(--mid);opacity:.45}
 .meter i.on{background:var(--ink);opacity:1}
 .skill:hover .meter i.on{background:var(--blue)}
 
 /* Projects */
 .proj{transition:transform .15s steps(3),box-shadow .15s steps(3);display:flex;flex-direction:column}
 .proj:hover{transform:translate(-5px,-5px);box-shadow:inset 0 0 0 3px var(--bg),inset 0 0 0 5px var(--ink),8px 8px 0 var(--ink)}
-.proj h3{font-size:1rem;display:flex;align-items:center;gap:.5rem}
-.proj .ico{font-size:1.4rem;line-height:1}
+.proj .picon{width:52px;height:52px;background:var(--ink);color:var(--bg);display:grid;place-items:center;font-size:1.6rem;margin-bottom:.9rem;
+  box-shadow:4px 4px 0 var(--mid)}
+.proj:hover .picon{animation:wiggle .4s steps(2) 2}
+@keyframes wiggle{50%{transform:rotate(-8deg)}}
+.proj h3{font-size:1rem}
 .proj p{flex:1}
-.proj .no{position:absolute;top:.6rem;right:.9rem;font-family:'Silkscreen',monospace;font-size:.7rem;color:var(--mid)}
-.tag{display:inline-block;font-family:'Silkscreen',monospace;font-size:.7rem;border:2px solid var(--ink);padding:.1rem .45rem;margin:0 .3rem .3rem 0}
+.proj .no{position:absolute;top:.8rem;right:1rem;font-family:'Silkscreen',monospace;font-size:.7rem;color:var(--mid)}
+.tag{display:inline-flex;align-items:center;gap:.3rem;font-family:'Silkscreen',monospace;font-size:.68rem;border:2px solid var(--ink);padding:.1rem .45rem;margin:0 .3rem .3rem 0}
 .tag.blue{border-color:var(--blue);color:var(--blue)}
 
 /* Buttons & form */
-.btn-retro{font-family:'Silkscreen',monospace;font-size:.8rem;background:var(--panel);color:var(--ink);
-  border:3px solid var(--ink);border-radius:0;box-shadow:inset 0 0 0 2px var(--bg),4px 4px 0 var(--ink);padding:.6rem 1.2rem;
+.btn-retro{font-family:'Silkscreen',monospace;font-size:.8rem;background:var(--panel);color:var(--ink);display:inline-flex;align-items:center;gap:.45rem;
+  border:3px solid var(--ink);border-radius:0;box-shadow:inset 0 0 0 2px var(--bg),4px 4px 0 var(--ink);padding:.6rem 1.1rem;
   transition:transform .08s,box-shadow .08s}
 .btn-retro:hover,.btn-retro:focus{background:var(--ink);color:var(--bg);box-shadow:4px 4px 0 var(--mid)}
 .btn-retro:active{transform:translate(4px,4px);box-shadow:none}
+.input-icon{position:relative}
+.input-icon>.bi{position:absolute;left:.8rem;top:.95rem;font-size:.95rem;pointer-events:none;color:var(--mid)}
+.input-icon .form-control,.input-icon .form-select{padding-left:2.3rem}
 .form-control,.form-select{border:3px solid var(--ink);border-radius:0;background-color:var(--panel);
-  color:var(--ink);font-family:'Silkscreen',monospace;font-size:.8rem;box-shadow:inset 0 0 0 2px var(--bg)}
+  color:var(--ink);font-family:'Silkscreen',monospace;font-size:.8rem;box-shadow:inset 0 0 0 2px var(--bg);min-height:48px}
 .form-control::placeholder{color:var(--mid)}
 .form-control:focus,.form-select:focus{background-color:var(--panel);color:var(--ink);border-color:var(--ink);
   box-shadow:inset 0 0 0 2px var(--bg),0 0 0 3px var(--blue)}
-.err{font-size:1.1rem;color:#7a3f27}
+.input-icon:focus-within>.bi{color:var(--ink)}
+.err{font-size:1.1rem;color:#7a3f27;display:inline-flex;gap:.4rem;align-items:center}
 .shake{animation:shake .3s steps(4)}
 @keyframes shake{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.contact-links{display:grid;gap:.6rem}
+.contact-links a{display:flex;align-items:center;gap:.7rem;text-decoration:none;border:2px solid var(--ink);padding:.5rem .7rem;background:var(--light);
+  font-size:1.15rem;word-break:break-all}
+.contact-links a .bi{font-size:1.2rem;flex:none}
+.contact-links a .go{margin-left:auto;font-size:.9rem}
 
 footer{border-top:3px dashed var(--ink);margin-top:4rem;padding:1.5rem 0;font-size:1.1rem}
+footer .soc a{text-decoration:none;display:inline-flex;align-items:center;gap:.35rem;padding:.1rem .3rem}
 
-#toTop{position:fixed;right:1.2rem;bottom:1.2rem;z-index:45;opacity:0;pointer-events:none;transition:opacity .2s steps(2)}
+#toTop{position:fixed;right:1rem;bottom:calc(1rem + env(safe-area-inset-bottom));z-index:45;opacity:0;pointer-events:none;transition:opacity .2s steps(2);padding:.6rem .75rem}
 #toTop.show{opacity:1;pointer-events:auto}
 
-@media (max-width:576px){
-  .skill{flex-wrap:wrap;gap:.3rem}.skill .pix{width:auto;flex:1}.meter{flex:0 0 100%;order:3}
-  .nav-tabs-retro a{padding:.4rem .6rem}
-  .nav-tabs-retro a.active::before{display:none}
+/* ===== Tablet ===== */
+@media (max-width:767.98px){
+  .nav-social{display:none}
+  .nav-tabs-retro{justify-content:space-between}
+  .proj:hover{transform:none}
+}
+/* ===== Phone ===== */
+@media (max-width:575.98px){
+  body{font-size:1.25rem}
+  .hero{flex-direction:column;align-items:flex-start;gap:1.2rem;padding:1.4rem 0 1rem}
+  .avatar{width:84px;height:84px;box-shadow:inset 0 0 0 3px var(--bg),4px 4px 0 var(--ink)}
+  .avatar svg{width:60px;height:60px}
+  .hero-sub{min-height:3.6em}
+  .nav-tabs-retro{gap:.2rem;padding:.4rem 0}
+  .nav-tabs-retro a{flex:1;flex-direction:column;gap:.25rem;padding:.45rem .2rem;font-size:.6rem;justify-content:center;text-align:center}
+  .nav-tabs-retro a .bi{font-size:1.15rem}
+  section{padding-top:2.6rem}
+  .box{padding:1.1rem}
+  .skill{flex-wrap:wrap;gap:.4rem .6rem}
+  .skill .pix{width:auto;flex:1}
+  .meter{flex:0 0 100%;order:3}
+  .proj .no{top:1rem}
+  .btn-retro{justify-content:center}
+  .proj .btn-retro{flex:1}
+  #contactForm .btn-retro{width:100%}
+  footer{flex-direction:column;align-items:flex-start}
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
@@ -160,6 +237,7 @@ footer{border-top:3px dashed var(--ink);margin-top:4rem;padding:1.5rem 0;font-si
 <body>
 
 <div id="boot" aria-hidden="true">
+  <i class="bi bi-terminal-fill"></i>
   <div>SAO-OS v1.0</div>
   <div class="bootbar" id="bootbar"></div>
   <div style="font-size:.7rem" id="bootmsg">LOADING...</div>
@@ -168,8 +246,7 @@ footer{border-top:3px dashed var(--ink);margin-top:4rem;padding:1.5rem 0;font-si
 <canvas id="pixels" aria-hidden="true"></canvas>
 
 <div class="wrap">
-<div class="container py-2" style="max-width:1000px">
-
+<div class="container" style="max-width:1000px">
   <header class="hero">
     <div class="avatar" aria-hidden="true">
       <svg viewBox="0 0 16 16" shape-rendering="crispEdges">
@@ -182,9 +259,14 @@ footer{border-top:3px dashed var(--ink);margin-top:4rem;padding:1.5rem 0;font-si
         <rect x="7" y="12" width="2" height="2" fill="#c4caa6"/>
       </svg>
     </div>
-    <div>
+    <div style="min-width:0">
       <h1 class="logo pix" id="logo" aria-label="Sao Moni">Sao Moni</h1>
-      <p class="mt-3 mb-0 hero-sub"><span id="typed"></span><span class="cursor">_</span></p>
+      <p class="mt-3 mb-0 hero-sub"><i class="bi bi-chevron-right"></i><span><span id="typed"></span><span class="cursor">_</span></span></p>
+      <div class="chips">
+        <span class="chip"><i class="bi bi-geo-alt-fill"></i>Phnom Penh</span>
+        <span class="chip"><i class="bi bi-mortarboard-fill"></i>CS Student</span>
+        <span class="chip"><i class="bi bi-shield-lock-fill"></i>CyberSec</span>
+      </div>
       <div class="bar"></div>
     </div>
   </header>
@@ -193,38 +275,46 @@ footer{border-top:3px dashed var(--ink);margin-top:4rem;padding:1.5rem 0;font-si
 <div class="topnav" id="topnav">
   <div class="container" style="max-width:1000px">
     <nav class="nav-tabs-retro" aria-label="Sections">
-      <a href="#about" class="active">Profile</a>
-      <a href="#skills">Skills</a>
-      <a href="#projects">Projects</a>
-      <a href="#contact">Contact</a>
+      <a href="#about" class="active"><i class="bi bi-person-badge-fill"></i><span>Profile</span></a>
+      <a href="#skills"><i class="bi bi-cpu-fill"></i><span>Skills</span></a>
+      <a href="#projects"><i class="bi bi-folder-fill"></i><span>Projects</span></a>
+      <a href="#contact"><i class="bi bi-envelope-fill"></i><span>Contact</span></a>
+      <span class="nav-social">
+        <a href="https://github.com/sao-moni" target="_blank" rel="noopener" aria-label="GitHub"><i class="bi bi-github"></i></a>
+        <a href="https://linkedin.com/in/sao-moni" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+      </span>
     </nav>
   </div>
 </div>
 
-<div class="container pb-4" style="max-width:1000px">
+<main class="container pb-4" style="max-width:1000px">
 
   <section id="about">
     <div class="row g-4">
-      <div class="col-md-7 reveal">
-        <h2 class="h5 mb-3"><span class="num">01</span> Profile</h2>
-        <div class="box h-100">
+      <div class="col-md-7 stack reveal">
+        <h2 class="h5 mb-3"><span class="hicon"><i class="bi bi-person-fill"></i></span><span class="num">01</span> Profile</h2>
+        <div class="box">
           <p class="mb-3">Hi, I'm Sao Moni. I'm studying Computer Science at <a href="https://www.westernuniversity.edu.kh" target="_blank" rel="noopener">Western University</a>. I build small projects in Python and Bootstrap, and I'm happy to talk networking concepts, CS and tech projects.</p>
-          <span class="lbl">Location</span>
-          <div>📍 Phnom Penh, Cambodia</div>
+          <ul class="info">
+            <li><span class="ibox"><i class="bi bi-geo-alt-fill"></i></span>Phnom Penh, Cambodia</li>
+            <li><span class="ibox"><i class="bi bi-code-slash"></i></span>Python · SQL · Web</li>
+            <li><span class="ibox"><i class="bi bi-hdd-network-fill"></i></span>Networking &amp; SysAdmin</li>
+            <li><span class="ibox"><i class="bi bi-translate"></i></span>Khmer · English</li>
+          </ul>
         </div>
       </div>
-      <div class="col-md-5 reveal" style="transition-delay:.12s">
-        <h2 class="h5 mb-3"><span class="num">02</span> Status</h2>
-        <div class="box h-100">
+      <div class="col-md-5 stack reveal" style="transition-delay:.12s">
+        <h2 class="h5 mb-3"><span class="hicon"><i class="bi bi-broadcast"></i></span><span class="num">02</span> Status</h2>
+        <div class="box">
           <div class="form-check form-switch mb-3">
             <input class="form-check-input" type="checkbox" id="avail" checked disabled>
             <label class="form-check-label pix" style="font-size:.8rem" for="avail">Open to work<span class="live-dot"></span></label>
           </div>
-          <span class="lbl">Education</span>
+          <span class="lbl"><i class="bi bi-book-fill"></i>Education</span>
           <ul class="edu">
-            <li>B.Sc. Computer Science<small>Western University · 2025 – present</small></li>
-            <li>B.Sc. CyberSecurity<small>Institute of Digital Intelligence Cambodia · 2026 – present</small></li>
-            <li>Grade 12 Diploma Examination<small>Somdach Ov Somdach Mae High School · 2025</small></li>
+            <li><i class="bi bi-mortarboard-fill"></i>B.Sc. Computer Science<small><span><i class="bi bi-building"></i> Western University</span><span><i class="bi bi-calendar3"></i> 2025 – present</span></small></li>
+            <li><i class="bi bi-shield-lock-fill"></i>B.Sc. CyberSecurity<small><span><i class="bi bi-building"></i> Institute of Digital Intelligence Cambodia</span><span><i class="bi bi-calendar3"></i> 2026 – present</span></small></li>
+            <li><i class="bi bi-award-fill"></i>Grade 12 Diploma Examination<small><span><i class="bi bi-building"></i> Somdach Ov Somdach Mae High School</span><span><i class="bi bi-calendar3"></i> 2025</span></small></li>
           </ul>
         </div>
       </div>
@@ -232,82 +322,104 @@ footer{border-top:3px dashed var(--ink);margin-top:4rem;padding:1.5rem 0;font-si
   </section>
 
   <section id="skills">
-    <h2 class="h5 mb-3 reveal"><span class="num">03</span> Skills</h2>
+    <h2 class="h5 mb-3 reveal"><span class="hicon"><i class="bi bi-cpu-fill"></i></span><span class="num">03</span> Skills</h2>
     <div class="box reveal">
       <div class="row g-3" id="skillList"></div>
     </div>
   </section>
 
   <section id="projects">
-    <h2 class="h5 mb-3 reveal"><span class="num">04</span> Projects</h2>
+    <h2 class="h5 mb-3 reveal"><span class="hicon"><i class="bi bi-folder-fill"></i></span><span class="num">04</span> Projects</h2>
     <div class="row g-4">
       <div class="col-md-4 reveal"><div class="box proj h-100">
         <span class="no">#01</span>
-        <h3><span class="ico">🩸</span>Blood Donor Bank</h3>
+        <div class="picon"><i class="bi bi-droplet-fill"></i></div>
+        <h3>Blood Donor Bank</h3>
         <p>A management system for tracking blood donors, written in Python with a database module.</p>
-        <div><span class="tag">Python</span><span class="tag">Database</span></div>
-        <div class="mt-3"><a class="btn btn-retro" href="https://github.com/sao-moni/BloodDonorBank-Management-System" target="_blank" rel="noopener">Code</a></div>
+        <div><span class="tag"><i class="bi bi-filetype-py"></i>Python</span><span class="tag"><i class="bi bi-database-fill"></i>Database</span></div>
+        <div class="mt-3 d-flex gap-2"><a class="btn btn-retro" href="https://github.com/sao-moni/BloodDonorBank-Management-System" target="_blank" rel="noopener"><i class="bi bi-github"></i>Code</a></div>
       </div></div>
       <div class="col-md-4 reveal" style="transition-delay:.12s"><div class="box proj h-100">
         <span class="no">#02</span>
-        <h3><span class="ico">🚀</span>Bootstrap Deploy</h3>
+        <div class="picon"><i class="bi bi-rocket-takeoff-fill"></i></div>
+        <h3>Bootstrap Deploy</h3>
         <p>A multi-page Bootstrap site (home, about, products, contact) deployed with GitHub Actions to Vercel.</p>
-        <div><span class="tag">Bootstrap</span><span class="tag">HTML</span><span class="tag blue">● Live</span></div>
-        <div class="mt-3 d-flex gap-2 flex-wrap"><a class="btn btn-retro" href="https://bootstrapdeployment.vercel.app" target="_blank" rel="noopener">View</a><a class="btn btn-retro" href="https://github.com/sao-moni/Bootstrap_Deploy" target="_blank" rel="noopener">Code</a></div>
+        <div><span class="tag"><i class="bi bi-bootstrap-fill"></i>Bootstrap</span><span class="tag"><i class="bi bi-filetype-html"></i>HTML</span><span class="tag blue"><i class="bi bi-circle-fill" style="font-size:.5rem"></i>Live</span></div>
+        <div class="mt-3 d-flex gap-2"><a class="btn btn-retro" href="https://bootstrapdeployment.vercel.app" target="_blank" rel="noopener"><i class="bi bi-box-arrow-up-right"></i>View</a><a class="btn btn-retro" href="https://github.com/sao-moni/Bootstrap_Deploy" target="_blank" rel="noopener"><i class="bi bi-github"></i>Code</a></div>
       </div></div>
       <div class="col-md-4 reveal" style="transition-delay:.24s"><div class="box proj h-100">
         <span class="no">#03</span>
-        <h3><span class="ico">🏠</span>Personal Site</h3>
+        <div class="picon"><i class="bi bi-globe2"></i></div>
+        <h3>Personal Site</h3>
         <p>My GitHub Pages website, built with plain HTML and a custom domain.</p>
-        <div><span class="tag">HTML</span><span class="tag">GitHub Pages</span></div>
-        <div class="mt-3"><a class="btn btn-retro" href="https://github.com/sao-moni/sao-moni.github.io" target="_blank" rel="noopener">Code</a></div>
+        <div><span class="tag"><i class="bi bi-filetype-html"></i>HTML</span><span class="tag"><i class="bi bi-github"></i>GitHub Pages</span></div>
+        <div class="mt-3 d-flex gap-2"><a class="btn btn-retro" href="https://github.com/sao-moni/sao-moni.github.io" target="_blank" rel="noopener"><i class="bi bi-github"></i>Code</a></div>
       </div></div>
     </div>
   </section>
 
   <section id="contact">
-    <h2 class="h5 mb-3 reveal"><span class="num">05</span> Contact</h2>
-    <div class="box reveal">
-      <form id="contactForm" class="row g-3" novalidate>
-        <div class="col-md-6">
-          <label class="lbl" for="name">Name</label>
-          <input class="form-control" id="name" placeholder="Type here" required>
+    <h2 class="h5 mb-3 reveal"><span class="hicon"><i class="bi bi-envelope-fill"></i></span><span class="num">05</span> Contact</h2>
+    <div class="row g-4">
+      <div class="col-lg-8 reveal">
+        <div class="box h-100">
+          <form id="contactForm" class="row g-3" novalidate>
+            <div class="col-md-6">
+              <label class="lbl" for="name"><i class="bi bi-person-fill"></i>Name</label>
+              <div class="input-icon"><i class="bi bi-pencil-fill"></i><input class="form-control" id="name" placeholder="Type here" autocomplete="name" required></div>
+            </div>
+            <div class="col-md-6">
+              <label class="lbl" for="topic"><i class="bi bi-tag-fill"></i>Topic</label>
+              <div class="input-icon"><i class="bi bi-list-ul"></i>
+                <select class="form-select" id="topic"><option>Project</option><option>Job</option><option>Just saying hi</option></select>
+              </div>
+            </div>
+            <div class="col-12">
+              <label class="lbl" for="msg"><i class="bi bi-chat-dots-fill"></i>Message</label>
+              <textarea class="form-control" id="msg" rows="4" placeholder="Type here..." required></textarea>
+            </div>
+            <div class="col-12 d-flex align-items-center gap-3 flex-wrap">
+              <button class="btn btn-retro" type="submit"><i class="bi bi-send-fill"></i>Send message</button>
+              <span class="err" id="note" role="status"></span>
+            </div>
+          </form>
+          <p class="mt-3 mb-0" style="font-size:1.05rem"><i class="bi bi-lock-fill"></i> Sending opens your email app. Nothing is stored on a server.</p>
         </div>
-        <div class="col-md-6">
-          <label class="lbl" for="topic">Topic</label>
-          <select class="form-select" id="topic">
-            <option>Project</option><option>Job</option><option>Just saying hi</option>
-          </select>
+      </div>
+      <div class="col-lg-4 reveal" style="transition-delay:.12s">
+        <div class="box h-100">
+          <span class="lbl mb-3"><i class="bi bi-link-45deg"></i>Find me</span>
+          <div class="contact-links">
+            <a href="mailto:saomoni.edu.kh@gmail.com"><i class="bi bi-envelope-at-fill"></i>Email<i class="bi bi-arrow-right go"></i></a>
+            <a href="https://github.com/sao-moni" target="_blank" rel="noopener"><i class="bi bi-github"></i>GitHub<i class="bi bi-arrow-up-right go"></i></a>
+            <a href="https://linkedin.com/in/sao-moni" target="_blank" rel="noopener"><i class="bi bi-linkedin"></i>LinkedIn<i class="bi bi-arrow-up-right go"></i></a>
+          </div>
         </div>
-        <div class="col-12">
-          <label class="lbl" for="msg">Message</label>
-          <textarea class="form-control" id="msg" rows="4" placeholder="Type here..." required></textarea>
-        </div>
-        <div class="col-12 d-flex align-items-center gap-3 flex-wrap">
-          <button class="btn btn-retro" type="submit">▶ Send message</button>
-          <span class="err" id="note" role="status"></span>
-        </div>
-      </form>
-      <p class="mt-3 mb-0" style="font-size:1.1rem">Sending opens your email app. Nothing is stored on a server.</p>
+      </div>
     </div>
   </section>
 
   <footer class="d-flex justify-content-between flex-wrap gap-2">
-    <span>© <span id="yr"></span> Sao Moni · Press START to continue<span class="cursor">_</span></span>
-    <span><a href="https://github.com/sao-moni" target="_blank" rel="noopener">GitHub</a> / <a href="https://linkedin.com/in/sao-moni" target="_blank" rel="noopener">LinkedIn</a> / <a href="mailto:saomoni.edu.kh@gmail.com">Email</a></span>
+    <span><i class="bi bi-c-circle"></i> <span id="yr"></span> Sao Moni · <i class="bi bi-controller"></i> Press START<span class="cursor">_</span></span>
+    <span class="soc"><a href="https://github.com/sao-moni" target="_blank" rel="noopener"><i class="bi bi-github"></i>GitHub</a> <a href="https://linkedin.com/in/sao-moni" target="_blank" rel="noopener"><i class="bi bi-linkedin"></i>LinkedIn</a> <a href="mailto:saomoni.edu.kh@gmail.com"><i class="bi bi-envelope-fill"></i>Email</a></span>
   </footer>
-</div>
+</main>
 </div>
 
-<a href="#" id="toTop" class="btn btn-retro" aria-label="Back to top">▲</a>
+<a href="#" id="toTop" class="btn btn-retro" aria-label="Back to top"><i class="bi bi-arrow-up"></i></a>
 
 <script>
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-// ---------- Skills (edit levels 1–10) ----------
-const skills=[["Python",7],["Lua",6],["MySQL",7],["SQL Server",6],["Networking",5],["SysAdmin",6],["Bootstrap",6],["HTML/CSS",6]];
-document.getElementById('skillList').innerHTML=skills.map(([n,l])=>
-  `<div class="col-md-6"><div class="skill" data-level="${l}"><span class="pix">${n}</span>
+// ---------- Skills: [name, level 1–10, Bootstrap Icon name] ----------
+const skills=[
+  ["Python",7,"filetype-py"],["Lua",6,"moon-stars-fill"],
+  ["MySQL",7,"database-fill"],["SQL Server",6,"hdd-stack-fill"],
+  ["Networking",5,"diagram-3-fill"],["SysAdmin",6,"terminal-fill"],
+  ["Bootstrap",6,"bootstrap-fill"],["HTML/CSS",6,"filetype-html"]
+];
+document.getElementById('skillList').innerHTML=skills.map(([n,l,ic])=>
+  `<div class="col-md-6"><div class="skill" data-level="${l}"><span class="sico"><i class="bi bi-${ic}"></i></span><span class="pix">${n}</span>
    <div class="meter" role="img" aria-label="${n}: ${l} out of 10">${'<i></i>'.repeat(10)}</div>
    <span class="lv">0/10</span></div></div>`).join('');
 
@@ -326,11 +438,10 @@ logo.innerHTML=[...logo.textContent].map((c,i)=>
 const lines=["Computer Science & CyberSecurity student.","Based in Phnom Penh, Cambodia.","I build things with Python & Bootstrap.","Currently: open to work."];
 const typed=document.getElementById('typed');
 function typeLoop(){
-  if(reduce){typed.textContent=lines[0]+' '+lines[1];return;}
+  if(reduce){typed.textContent=lines[0];return;}
   let li=0,ci=0,del=false;
   (function tick(){
-    const s=lines[li];
-    typed.textContent=s.slice(0,ci);
+    const s=lines[li]; typed.textContent=s.slice(0,ci);
     if(!del&&ci<s.length){ci++;setTimeout(tick,45);}
     else if(!del){del=true;setTimeout(tick,1800);}
     else if(ci>0){ci--;setTimeout(tick,20);}
@@ -355,11 +466,11 @@ const ro=new IntersectionObserver(es=>es.forEach(e=>{
   e.target.classList.add('in');
   e.target.querySelectorAll('.skill').forEach((s,i)=>setTimeout(()=>fillSkill(s),reduce?0:i*120));
   ro.unobserve(e.target);
-}),{threshold:.15});
+}),{threshold:.1});
 document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
 
 // ---------- Active nav tab ----------
-const links=[...document.querySelectorAll('.nav-tabs-retro a')];
+const links=[...document.querySelectorAll('.nav-tabs-retro > a')];
 const io=new IntersectionObserver(es=>es.forEach(e=>{
   if(e.isIntersecting)links.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+e.target.id));
 }),{rootMargin:'-40% 0px -55% 0px'});
@@ -367,21 +478,25 @@ document.querySelectorAll('section').forEach(s=>io.observe(s));
 
 // ---------- Scroll progress, sticky nav, back-to-top ----------
 const prog=document.getElementById('progress'),nav=document.getElementById('topnav'),toTop=document.getElementById('toTop');
-addEventListener('scroll',()=>{
+function onScroll(){
   const h=document.documentElement, p=h.scrollTop/(h.scrollHeight-h.clientHeight||1);
   prog.style.width=(p*100)+'%';
   nav.classList.toggle('stuck',nav.getBoundingClientRect().top<=0);
   toTop.classList.toggle('show',h.scrollTop>500);
-},{passive:true});
+}
+addEventListener('scroll',onScroll,{passive:true});onScroll();
 
 // ---------- Floating pixel background ----------
 (function(){
   if(reduce)return;
-  const c=document.getElementById('pixels'),x=c.getContext('2d');let W,H,ps=[];
+  const c=document.getElementById('pixels'),x=c.getContext('2d');let W,H,ps=[],lastW=0;
   const cols=['#6f7858','#c4caa6','#4a6fa5'];
-  function size(){W=c.width=innerWidth;H=c.height=innerHeight;
-    ps=Array.from({length:Math.round(W*H/26000)},()=>({x:Math.random()*W,y:Math.random()*H,
-      s:[4,6,8][Math.random()*3|0],v:.15+Math.random()*.45,c:cols[Math.random()*3|0],a:.25+Math.random()*.35}));}
+  function size(){
+    W=c.width=innerWidth;H=c.height=innerHeight;
+    if(W===lastW&&ps.length)return; lastW=W; // mobile: don't reset when the address bar hides
+    ps=Array.from({length:Math.max(12,Math.round(W*H/26000))},()=>({x:Math.random()*W,y:Math.random()*H,
+      s:[4,6,8][Math.random()*3|0],v:.15+Math.random()*.45,c:cols[Math.random()*3|0],a:.25+Math.random()*.35}));
+  }
   size();addEventListener('resize',size);
   (function draw(){
     x.clearRect(0,0,W,H);
@@ -399,14 +514,14 @@ form.addEventListener('submit',e=>{
   e.preventDefault();
   const name=document.getElementById('name'),msg=document.getElementById('msg'),topic=document.getElementById('topic');
   if(!name.value.trim()||!msg.value.trim()){
-    note.textContent='! Please fill in your name and message.';
+    note.innerHTML='<i class="bi bi-exclamation-triangle-fill"></i> Please fill in your name and message.';
     form.classList.remove('shake');void form.offsetWidth;form.classList.add('shake');
     (name.value.trim()?msg:name).focus();return;
   }
   const to='saomoni.edu.kh@gmail.com'; // <- your email
   const sub=encodeURIComponent('[Portfolio] '+topic.value+' from '+name.value.trim());
   location.href=`mailto:${to}?subject=${sub}&body=${encodeURIComponent(msg.value)}`;
-  note.textContent='Opening your email app...';
+  note.innerHTML='<i class="bi bi-check-circle-fill"></i> Opening your email app...';
 });
 </script>
 </body>
